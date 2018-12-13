@@ -5,7 +5,8 @@ using System.Collections;
 using System.IO;
 #endif
 using System.Collections.Generic;
-
+using System.Globalization;
+using System;
 public class DataService  {
 
 	private SQLiteConnection _connection;
@@ -70,32 +71,35 @@ public class DataService  {
 
 		_connection.InsertAll (new[]{
 			new Person{
-				Id = 1,
+				UserId = 1,
 				Name = "Tom",
-				Surname = "Perez",
-				Age = 56
+				FoolID = 1,
+				EpochTime = getCurrentEpochTime()
 			},
 			new Person{
-				Id = 2,
+				UserId = 2,
 				Name = "Fred",
-				Surname = "Arthurson",
-				Age = 16
+				FoolID = 2,
+				EpochTime = getCurrentEpochTime()
 			},
 			new Person{
-				Id = 3,
+				UserId = 3,
 				Name = "John",
-				Surname = "Doe",
-				Age = 25
+				FoolID = 2,
+				EpochTime = getCurrentEpochTime()
 			},
 			new Person{
-				Id = 4,
+				UserId = 4,
 				Name = "Roberto",
-				Surname = "Huertas",
-				Age = 37
+				FoolID = 3,
+				EpochTime = getCurrentEpochTime()
 			}
 		});
 	}
 
+	private uint getCurrentEpochTime() {
+		return (uint)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+	}
 	public IEnumerable<Person> GetPersons(){
 		return _connection.Table<Person>();
 	}
@@ -111,8 +115,8 @@ public class DataService  {
 	public Person CreatePerson(){
 		var p = new Person{
 				Name = "Johnny",
-				Surname = "Mnemonic",
-				Age = 21
+				FoolID = 3,
+				EpochTime = getCurrentEpochTime()
 		};
 		_connection.Insert (p);
 		return p;

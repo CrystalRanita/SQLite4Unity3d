@@ -8,8 +8,8 @@ public class ExistingDBScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		var ds = new DataService ("existing.db");
-		//ds.CreateDB ();
+		var ds = new DataService ("PersonRecord.db");
+		// ds.CreateDB ();
 		var people = ds.GetPersons ();
 		ToConsole (people);
 
