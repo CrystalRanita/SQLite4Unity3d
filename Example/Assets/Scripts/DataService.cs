@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO;
 #endif
 using System.Collections.Generic;
+using System;
 public class DataService  {
 
 	private SQLiteConnection _connection;
@@ -160,6 +161,29 @@ public class DataService  {
 		};
 		_connection.Insert (rec);
 		return rec;
+	}
+
+	public int GetCalToday(int uid) {
+		int totalCalToday = 0;
+		uint startDateTime = dateTimeToTimestamp(DateTime.Today); //Today at 00:00:00
+		uint endDateTime = dateTimeToTimestamp(DateTime.Today.AddDays(1).AddTicks(-1)); //Today at 23:59:59
+		var queryList = _connection.Table<PersonRecord>().Where(c => c.UserId == uid && c.EpochTime >= startDateTime && c.EpochTime <= endDateTime);
+		foreach (var rec in queryList) {
+			int tmpCal = _connection.Table<Food>().Where(c => c.FoodID == rec.FoolID).FirstOrDefault().Calorie;
+			totalCalToday += tmpCal;
+		}
+
+		return totalCalToday;
+	}
+
+	private uint dateTimeToTimestamp(DateTime value)
+	{
+		//create Timespan by subtracting the value provided from
+		//the Unix Epoch
+		TimeSpan span = (value - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
+	
+		//return the total seconds (which is a UNIX timestamp)
+		return (uint)span.TotalSeconds;
 	}
 
 	public IEnumerable<Person> GetPersonsNamedRoberto(){
