@@ -5,12 +5,18 @@ public class Person  {
 	[PrimaryKey, AutoIncrement]
 	public int UserId { get; set; }
 	public string Name { get; set; }
-	// public string Surname { get; set; }
-	public int FoolID { get; set; }
-	public uint EpochTime { get; set; }
+	public int CalorieThreshold { get; set; }
+
+	public Person(){
+	}
+ 
+	public Person(string name, int cal){
+		Name = name;
+		CalorieThreshold = cal;
+	}
 
 	public override string ToString ()
 	{
-		return string.Format ("[Person: UserId={0}, Name={1},  FoolID={2}, EpochTime={3}]", UserId, Name, FoolID, EpochTime);
+		return string.Format ("[Person: UserId=auto, Name={0}, CalorieThreshold={1}]", Name, CalorieThreshold);
 	}
 }

@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class CreateDBScript : MonoBehaviour {
+public class SetPersonScript : MonoBehaviour {
 
 	public Text DebugText;
+	public string USERNAME;
 
 	// Use this for initialization
 	void Start () {
-		StartSync();
+		var ds = new DataService ("MainRecord.db");
+		var p = ds.setPerson(USERNAME);
+		ToConsole("Add person: ");
+		ToConsole (p.ToString());
 	}
 
-    private void StartSync()
-    {
-        var ds = new DataService("PersonRecord.db");
-        ds.CreateDB();
-        
-        var people = ds.GetPersons ();
-        ToConsole (people);
-        people = ds.GetPersonsNamedRoberto ();
-        ToConsole("Searching for Roberto ...");
-        ToConsole (people); 
-    }
-	
 	private void ToConsole(IEnumerable<Person> people){
 		foreach (var person in people) {
 			ToConsole(person.ToString());
 		}
 	}
-	
+
 	private void ToConsole(string msg){
 		DebugText.text += System.Environment.NewLine + msg;
 		Debug.Log (msg);

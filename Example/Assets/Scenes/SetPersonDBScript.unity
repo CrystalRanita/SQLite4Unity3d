@@ -291,10 +291,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1328951334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7bc20ff89825de4bbe2fadaed07b0fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 17799e179fb139546a85e39084239051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DebugText: {fileID: 1275835954}
+  USERNAME: crystal
 --- !u!81 &1328951336
 AudioListener:
   m_ObjectHideFlags: 0

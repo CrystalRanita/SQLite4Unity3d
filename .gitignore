@@ -24,3 +24,7 @@ sysinfo.txt
 
 # outputfile
 Example/*.apk
+
+# DB file create if not exists
+./Example/Assets/StreamingAssets/*.db
+./Example/Assets/StreamingAssets/*.meta
