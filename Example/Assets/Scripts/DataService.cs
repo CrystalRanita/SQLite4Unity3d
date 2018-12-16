@@ -152,6 +152,16 @@ public class DataService  {
 		return query.CalorieThreshold;
 	}
 
+	public PersonRecord AddRecord(int uid, int foodid, uint timestamp) {
+		var rec = new PersonRecord{
+			UserId = uid,
+			FoolID = foodid,
+			EpochTime = timestamp
+		};
+		_connection.Insert (rec);
+		return rec;
+	}
+
 	public IEnumerable<Person> GetPersonsNamedRoberto(){
 		return _connection.Table<Person>().Where(x => x.Name == "Roberto");
 	}

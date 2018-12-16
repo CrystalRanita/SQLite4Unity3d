@@ -1,5 +1,5 @@
-﻿using SQLite4Unity3d;
-// using System.Globalization;
+﻿using UnityEngine;
+using SQLite4Unity3d;
 using System;
 
 public class PersonRecord  {
@@ -13,14 +13,10 @@ public class PersonRecord  {
 	public PersonRecord(){
 	}
  
-	public PersonRecord(int uid, int foodid){
+	public PersonRecord(int uid, int foodid, uint timestamp){
 		UserId = uid;
 		FoolID = foodid;
-		EpochTime = getCurrentEpochTime();
-	}
-
-	private uint getCurrentEpochTime() {
-		return (uint)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+		EpochTime = timestamp; // 1544977587 (len=10)
 	}
 
 	public override string ToString ()
