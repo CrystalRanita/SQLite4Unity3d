@@ -140,11 +140,16 @@ public class DataService  {
 		return _connection.Table<Person>().Where(x => x.UserId == uid);
 	}
 
-	public IEnumerable<Person> UpdatePersonTarget(int uid, int target){
+	public IEnumerable<Person> UpdateCalTarget(int uid, int target){
 		var query = _connection.Table<Person>().Where(c => c.UserId == uid).FirstOrDefault();
 		query.CalorieThreshold = target;
 		_connection.Update(query);
 		return _connection.Table<Person>().Where(x => x.UserId == uid);
+	}
+
+	public int GetCalTarget(int uid){
+		var query = _connection.Table<Person>().Where(c => c.UserId == uid).FirstOrDefault();
+		return query.CalorieThreshold;
 	}
 
 	public IEnumerable<Person> GetPersonsNamedRoberto(){

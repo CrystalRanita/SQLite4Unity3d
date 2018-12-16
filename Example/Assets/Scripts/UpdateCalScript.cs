@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 
-public class UpdatePersonScript : MonoBehaviour {
+public class UpdateCalScript : MonoBehaviour {
 
 	public Text DebugText;
 	public int TARGET_CAL;
@@ -11,7 +11,7 @@ public class UpdatePersonScript : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		var ds = new DataService ("MainRecord.db");
-		var person = ds.UpdatePersonTarget(1, TARGET_CAL);
+		var person = ds.UpdateCalTarget(1, TARGET_CAL);
 		ToConsole (person);
 		ToConsole ("update person done!");
 	}
