@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GetPersonScript : MonoBehaviour {
 
@@ -9,25 +10,18 @@ public class GetPersonScript : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		var ds = new DataService ("MainRecord.db");
-		// ds.CreateDB ();
-		var person = ds.GetPerson(0);
-		ToConsole ("Create done!");
+		var person = ds.GetPerson(1);
 		ToConsole (person);
-
-		// people = ds.GetPersonsNamedRoberto ();
-		// ToConsole("Searching for Roberto ...");
-		// ToConsole (people);
-
-		// ds.CreatePerson ();
-		// ToConsole("New person has been created");
-		// var p = ds.GetJohnny ();
-		// ToConsole(p.ToString());
+		ToConsole ("get person done!");
 	}
 	
 	private void ToConsole(IEnumerable<Person> people){
+		var count = 0;
 		foreach (var person in people) {
+			count++;
 			ToConsole(person.ToString());
 		}
+		ToConsole ("Person count: " + count);
 	}
 
 	private void ToConsole(string msg){
